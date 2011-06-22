@@ -18,4 +18,4 @@ to use vanGogh-specific styles.
 All code is open source and dual licensed under GPL and MIT. Check the individual licenses for more information.
 
 ##Credits##
-Big creds to [isagalaev](https://github.com/isagalaev) and contributors for the creation of highlight.js that makes this plugin possible!
+Big creds to [isagalaev](https://github.com/isagalaev) and contributors for the creation of [highlight.js](https://github.com/isagalaev/highlight.js); the heart and soul of this plugin.
