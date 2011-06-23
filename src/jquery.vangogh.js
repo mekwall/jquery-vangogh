@@ -186,7 +186,7 @@
                     code = '<code class="vg-code">'+code+'</code>';
                     // add gutter to container if numbers is enabled
                     if (options.numbers) { 
-                        code = '<div class="vg-gutter">'+numbers+'</div>'+code;
+                        code = '<div class="vg-gutter" unselectable="on">'+numbers+'</div>'+code;
                     }
                     // put new code in container
                     self.html(code);
