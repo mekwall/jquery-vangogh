@@ -10,8 +10,8 @@
     margin: 0;
 }
  
-.vg-container .vg-line,
-.vg-container .vg-number {
+.vg-code .vg-line,
+.vg-gutter .vg-number {
     display: block;
     height: 1.5em;
     line-height: 1.5em !important;

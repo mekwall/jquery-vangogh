@@ -41,6 +41,14 @@
             );
         }
     };
+	
+	// precompile regex patterns
+	var rxp = {
+		numberRange: /^([0-9]+)-([0-9]+)$/,
+		pageNumber: /-([0-9]+)$/,
+		multilineBegin: /<span class="([\w-_][^"]+)">(?:.[^<]*(?!<\/span>)|)$/ig,
+		multilineEnd: /(<span class="([\w-_][^"]+)">)?(?:.[^<]*)?(<\/span>)/ig
+	};
 
     // hey vincent!
     $.fn.vanGogh = function(options){
@@ -150,7 +158,7 @@
                 var lines = container.html().split("\n"),
                     numbers = "",
                     code = "";
-                
+
                 // highlight a line/word/phrase
                 function highlight(num, clear, initial){
                     var range = false,
@@ -181,7 +189,7 @@
                         // handle strings
                         if ($.type(hl) === "string") {
                             // check for range
-                            var match = hl.match(/^([0-9]+)-([0-9]+)$/);
+                            var match = rxp.numberRange.exec(hl);
                             if (match) {
                                 var from = match[1], to = match[2], range = "";
                                 for (var i = from; i <= to; i++) {
@@ -212,18 +220,46 @@
                     !initial && hashTool.set(id, highlighted);
                 }
                 
-                // if not inline and there are multiple lines
+                // if not inline
                 if (!inline) {
                     // iterate the lines
+					var multiline = {},
+						level = 0;
                     $.each(lines, function(i, line){
                         var num = i+options.firstLine,
-                            lineId = id+'-'+num;
+                            lineId = id+'-'+num,
+							newLine = line;
                         // if numbers is enabled, add number to gutter
                         if (options.numbers) {
                             numbers += '<a class="vg-number" rel="#'+lineId+'">'+num+'</a>';
                         }
+						// check if in multiline mode
+						if (multiline[level]) {
+							// check for closing tag
+							var end = rxp.multilineEnd.exec(line);
+							// simulate a negative lookbehind by forcing first group not to match
+							if (end && !end[1]) {
+								// closing tag found
+								newLine = '<span class="'+multiline[level]+'">'+newLine;
+								// down a level
+								delete multiline[level];
+								level--;
+							} else {
+								// we're still on the same level
+								newLine = '<span class="'+multiline[level]+'">'+newLine+'</span>';
+							}
+						}
+						// detect and retain multiline styles
+						// (inline languages, multi-line comments etc.)
+						var match = rxp.multilineBegin.exec(line);
+						if (match) {
+							// up a level
+							level++;
+							// store current style
+							multiline[level] = match[1];
+						}
                         // wrap the line
-                        code += '<div class="vg-line" id="'+lineId+'">'+line+'</div>';
+                        code += '<div class="vg-line" id="'+lineId+'">'+newLine+'</div>';
                     });
                     // wrap all lines
                     code = '<code class="vg-code">'+code+'</code>';
@@ -254,7 +290,7 @@
                         }
 
                         var prevClicked = lastClicked;
-                        lastClicked = parseInt(rel.match(/-([0-9]+)$/)[1], 10);
+                        lastClicked = parseInt(rxp.pageNumberexec(rel)[1], 10);
                         
                         // handle shift-click to allow selecting range
                         if (e.shiftKey && lastClicked) {
@@ -321,11 +357,13 @@
                 });
                 
                 if (options.maxLines > 0) {
-                    var lineHeight = self.find(".vg-line").height()
-                        newHeight =
-                            lineHeight*(options.maxLines+1)+
-                            parseInt(container.css("paddingTop"));
-                    self.height(newHeight);
+					var lineHeight = self.find(".vg-line").height(),
+						padding = parseInt(container.css("paddingTop")),
+						newHeight = lineHeight*(options.maxLines+1)+padding;
+					self.css({
+						minHeight: lineHeight+padding,
+						maxHeight: newHeight
+					});
                 }
                 
                 // highlight rows passed in options
