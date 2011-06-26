@@ -23,7 +23,7 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 .vg-code *::-webkit-selection,
 .vg-code *::selection,
 .vg-line.vg-highlight {
-    background-color: #404E51;
+    background: #404E51;
 }
  
 .vg-line span.vg-highlight {
@@ -47,7 +47,6 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 .vg-code .diff .header,
 .vg-code .javadoc {
     color: #818E96;
-    font-style: italic;
 }
  
 .vg-code .keyword,
@@ -55,7 +54,9 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 .vg-code .winutils,
 .vg-code .javascript .title,
 .vg-code .lisp .title,
-.vg-code .subst {
+.vg-code .subst,
+.vg-code .literal,
+.vg-code .class {
     color: #93C763;
     font-weight: bold;
 }
@@ -71,49 +72,54 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 .vg-code .tex .formula {
     color: #EC7600;
 }
- 
+
 .vg-code .title,
 .vg-code .id {
     color: #678CB1;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .vg-code .javascript .title,
 .vg-code .lisp .title,
 .vg-code .subst {
-    font-weight: normal
+    font-weight: normal;
+}
+
+.vg-code .javascript .title {
+	color: #e0e2e4;
 }
 
 .vg-code .class .title,
 .vg-code .haskell .label,
 .vg-code .tex .command {
     color: #A082BD;
-    font-weight: bold
+    font-weight: bold;
 }
  
 .vg-code .tag,
 .vg-code .tag .title,
 .vg-code .rules .property,
 .vg-code .django .tag .keyword {
-    color: #8BBA8B;
-    font-weight: normal;
+    color: #8CBBAD;
+    font-weight: bold;
+}
+
+.vg-code .attribute {
+	color: #B3B689;
+}
+
+.vg-code .entity {
+	color: #BBBBBB;
 }
  
-.vg-code .attribute,
 .vg-code .variable,
 .vg-code .instancevar,
 .vg-code .lisp .body {
     color: #678CB1;
 }
  
- 
 .vg-code .regexp {
     color: #D39745;
-}
- 
-.vg-code .class {
-    color: #93C763;
-    font-weight: bold
 }
  
 .vg-code .symbol,
@@ -131,14 +137,21 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 .vg-code .lisp .title {
     color: #0086b3
 }
- 
+
+.vg-code .preprocessor {
+	color: #D955C1;
+}
+
 .vg-code .codeprocessor,
 .vg-code .pi,
 .vg-code .doctype,
-.vg-code .shebang,
+.vg-code .shebang {
+    color: #ABBFD3;
+    font-weight: bold;
+}
+
 .vg-code .cdata {
-    color: #999;
-    font-weight: bold
+	color: #D5E6F0;
 }
  
 .vg-code .deletion {
@@ -161,16 +174,14 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
     opacity: 0.5;
 }
 
-.vg-code .preprocessor {
-	color: #D955C1;
+.vg-code .css .class {
+	color: #93C763;
 }
 
-.vg-code .xml .title,
-.vg-code .html .title {
+.vg-code .css .tag {
+	color: #D0D2B5;
+}
+
+.vg-code .css .attribute {
 	color: #678CB1;
-}
-
-.vg-code .xml .attribute,
-.vg-code .html .attribute {
-	color: #B3B689;
 }
