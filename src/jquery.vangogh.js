@@ -290,7 +290,7 @@
                         }
 
                         var prevClicked = lastClicked;
-                        lastClicked = parseInt(rxp.pageNumberexec(rel)[1], 10);
+                        lastClicked = parseInt(rxp.pageNumber.exec(rel)[1], 10);
                         
                         // handle shift-click to allow selecting range
                         if (e.shiftKey && lastClicked) {
