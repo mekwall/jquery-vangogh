@@ -3,6 +3,44 @@
     var painters = 1,
         waitForLoad = false,
         waitForSource = false;
+    
+    // tool to parse/manipulate hash
+    var hashTool = {
+        get: function(id) {
+            var hash = window.location.hash;
+            if (hash.length > 0) {
+                var match = hash.match(new RegExp(id+":{([a-zA-Z0-9,-]*)}"));
+                if (match) {
+                    return match[1].split(",");
+                }
+            }
+            return [];
+        },
+        set: function(id, hl) {
+            var hash = window.location.hash,
+                newHash, addHash = id+":{"+hl.join(",")+"}",
+                match = hash.indexOf(id+":{");
+            
+            if (hl.length === 0) {
+                return this.remove(id);
+            }
+            if (match !== -1) {
+                newHash = hash.replace(
+                    new RegExp("("+id+":{[a-zA-Z0-9,-]*})"),
+                    addHash
+                );
+            } else {
+                newHash = (hash.length > 0) ? hash+","+addHash : addHash;
+            }
+            window.location.hash = newHash;
+        },
+        remove: function(id) {
+            window.location.hash = window.location.hash.replace(
+                new RegExp("([,]?"+id+":{[a-zA-Z0-9,-]*}[,]?)"),
+                ""
+            );
+        }
+    };
 
     // hey vincent!
     $.fn.vanGogh = function(options){
@@ -14,7 +52,7 @@
             highlight: null,
             animateGutter: true,
             autoload: "http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js",
-            tab: "    ",
+            tab: "    "
         };
         // merge defaults and passed options
         options = $.extend({}, defaults, options);
@@ -22,7 +60,6 @@
         // scope vars
         var elems = this,
             run = 0,
-            currentHash = window.location.hash,
             remoteData;
         
         // cross-browser compatible selection
@@ -90,7 +127,8 @@
                     id = this.id,
                     container = self.find("code"),
                     inline = false,
-                    lastClicked = false;
+                    lastClicked = false,
+                    highlighted = [];
                 
                 // if there's no code element,
                 // assume it's self and inline
@@ -115,9 +153,7 @@
                 
                 // highlight a line/word/phrase
                 function highlight(num, clear, initial){
-                    var oldHash = window.location.hash.substring(1),
-                        addHash = "",
-                        range = false,
+                    var range = false,
                         lines = self.find(".vg-line");
                     
                     // clear all previous highlights
@@ -125,48 +161,55 @@
                         // remove class
                         self.find(".vg-highlight").removeClass("vg-highlight");
                         // remove from hash
-                        oldHash = oldHash.replace(new RegExp('([#]?'+id+'-[0-9]+[,]?)','g'), "");
+                        hashTool.remove(id);
+                        // clear highlighted array
+                        highlighted = [];
                     }
                     
-                    // check for range in string
-                    if (typeof num === "string") {
-                        var match = num.match(/^([0-9]+)-([0-9]+)$/);
-                        if (match) {
-                            num = [];
-                            var from = match[1], to = match[2];
-                            for (var i = from; i <= to; i++) {
-                                num.push(i);
-                            }
-                            // TODO: ranges in hash
-                            //range = true;
-                            //addHash += ','+id+'-'+from+'-'+to;
-                        } else {
-                            // check for word/phrase
-                            self.find(".vg-line:contains("+num+")").each(function(){
-                                var line = $(this).addClass("vg-highlight");
-                                line.html(line.html().replace(num, '<span class="vg-highlight">'+num+'</span>'));
-                            });
-                            return;
+                    // if not array, make it into one
+                    num = ($.type(num) === "array") ? 
+                        num : [num];
+
+                    // iterate array
+                    $.each(num, function(i, hl){
+                        // if already highlighted, do nothing
+                        if (highlighted.indexOf(hl) > -1) { return; }
+                        // convert to int if string is number
+                        if (!isNaN(parseFloat(hl, 10)) && isFinite(hl)) {
+                            hl = parseInt(hl, 10);
                         }
-                    } else if (typeof num === "number") {
-                        num = [num];
-                    }
-                    $.each(num, function(){
-                        var lineId = id+'-'+this,
+                        // handle strings
+                        if ($.type(hl) === "string") {
+                            // check for range
+                            var match = hl.match(/^([0-9]+)-([0-9]+)$/);
+                            if (match) {
+                                var from = match[1], to = match[2], range = "";
+                                for (var i = from; i <= to; i++) {
+                                    range += ',#'+id+'-'+i;
+                                    highlighted.push(i);
+                                }
+                                lines.filter(range.substring(1)).addClass("vg-highlight");
+                            } else {
+                                // check for word/phrase
+                                self.find(".vg-line:contains("+hl+")").each(function(){
+                                    var line = $(this).addClass("vg-highlight");
+                                    line.html(line.html().replace(hl, '<span class="vg-highlight">'+hl+'</span>'));
+                                });
+                                highlighted.push(hl);
+                            }
+                        } else {
+                            var lineId = id+'-'+this,
                             line = lines.filter('#'+lineId);
-                            
-                        // line found
-                        if (line.length) {
-                            line.addClass("vg-highlight");
-                            if (!range) { addHash += ','+lineId; }
+                                
+                            // line found
+                            if (line.length) {
+                                line.addClass("vg-highlight");
+                                highlighted.push(hl);
+                            }
                         }
                     });
-                    // add hash
-                    if (!initial) {
-                        window.location.hash = oldHash.length ?
-                            '#'+oldHash+addHash :
-                            '#'+addHash.substring(1);
-                    }
+                    // update hash
+                    !initial && hashTool.set(id, highlighted);
                 }
                 
                 // if not inline and there are multiple lines
@@ -186,7 +229,7 @@
                     code = '<code class="vg-code">'+code+'</code>';
                     // add gutter to container if numbers is enabled
                     if (options.numbers) { 
-                        code = '<div class="vg-gutter" unselectable="on">'+numbers+'</div>'+code;
+                        code = '<div class="vg-gutter">'+numbers+'</div>'+code;
                     }
                     // put new code in container
                     self.html(code);
@@ -200,21 +243,18 @@
                         
                         // check if already highlighted
                         if (line.hasClass("vg-highlight")) {
-                            var oldHash = window.location.hash,
-                                newHash = oldHash;
-                            // remove highlight
+                            // remove highlight class
                             line.removeClass("vg-highlight");
-                            // remove from hash
-                            window.location.hash = oldHash.replace(
-                                new RegExp('([#,]?'+rel.substring(1)+'[,]?)'),
-                                ''
-                            );
+                            // remove from highlighted
+                            highlighted.splice(highlighted.indexOf(number.text()), 1);
+                            // update hash
+                            hashTool.set(id, highlighted);
                             lastClicked = false;
                             return false;
                         }
 
                         var prevClicked = lastClicked;
-                        lastClicked = parseInt(rel.match(/-([0-9]+)$/)[1]);
+                        lastClicked = parseInt(rel.match(/-([0-9]+)$/)[1], 10);
                         
                         // handle shift-click to allow selecting range
                         if (e.shiftKey && lastClicked) {
@@ -291,11 +331,8 @@
                 // highlight rows passed in options
                 options.highlight && highlight(options.highlight, true, true);
                 // highlight lines that exist in hash
-                var hashLines = currentHash.match(new RegExp('('+id+'-[0-9]+)','g'));
-                hashLines &&
-                    self.find('#'+hashLines.join(",#")).each(function(i){
-                        highlight(parseInt(this.id.match(/-([0-9]+)$/)[1]), (i === 0));
-                    });
+                var hashLines = hashTool.get(id);
+                hashLines.length && highlight(hashLines, false, true);
             });
         }
         // let the master begin
