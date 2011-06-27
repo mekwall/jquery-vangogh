@@ -8,13 +8,14 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-  <script src="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.js"></script>
+  <script src="master/src/jquery.vangogh.js"></script>
   
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/flick/jquery-ui.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Special+Elite&v1">
-  <link rel="stylesheet" href="jquery-vangogh/src/jquery.vangogh.css">
+  <link rel="stylesheet" href="master/src/jquery.vangogh.css">
 
   <style type="text/css">
+    html { oerflow-y: scroll; }
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -57,7 +58,7 @@
 			.attr({
 				title: this,
 				rel: "alternate stylesheet",
-				href: "jquery-vangogh/src/styles/"+this+".css",
+				href: "master/src/styles/"+this+".css",
                 type: "text/css"
 			})
 			.appendTo("head");
