@@ -3,7 +3,14 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>mekwall/jquery-vangogh @ GitHub</title>
+  <title>vanGogh syntax highlighter</title>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+  <script src="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.js"></script>
+  
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/flick/jquery-ui.css" />
+  <link rel="stylesheet" href="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.css" />
 
   <style type="text/css">
     body {
@@ -16,7 +23,8 @@
       margin: 0 auto;
       width: 700px;
     }
-    h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
+	#styles { float: right; }
+    h1 { font-size: 3.5em; color: #000000; margin-bottom: 3px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #000000; }
@@ -28,6 +36,38 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
+  
+  <script>
+  $(function(){
+	var styles = [ "github", "obsidian" ];
+		styleSelector = $("#styles select").change(function(){
+			var style = $(this).val();
+			$("link[rel='alternate stylesheet']")
+				.attr("disabled", true)
+				.filter("[title='"+style+"']")
+				.removeAttr("disabled");
+		});
+		
+	$.each(styles, function(){
+		$("<link />")
+			.attr({
+				title: this,
+				rel: "alternate stylesheet",
+				href: "https://raw.github.com/mekwall/jquery-vangogh/master/src/styles/"+this+".css",
+				disabled: true
+			})
+			.appendTo("head");
+		$("<option>"+this+"</option>").appendTo(styleSelector);
+	});
+	styleSelector.change();
+	
+	$(".accordion").accordion();
+	
+	
+	$(".vangogh").vanGogh();
+	$(".vangogh-nogutter").vanGogh({ numbers: false });
+  });
+  </script>
 </head>
 
 <body>
@@ -42,18 +82,51 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/mekwall/jquery-vangogh">jquery-vangogh</a>
+    <h1><a href="http://github.com/mekwall/jquery-vangogh">vanGogh</a>
       <span class="small">by <a href="http://github.com/mekwall">mekwall</a></span></h1>
+	<h2>express your code in colors</h2>
 
     <div class="description">
       jQuery syntax highlighter powered by highlight.js
     </div>
+	
+	<div id="styles"><label>Styles:</label> <select></select></div>
+	<h2>Examples</h2>
+	
+	<div class="accordion">
+	
+		<h3><a href="#">Default</a></h3>
+		<div>
+			<p>This is the default look and behavior of vanGogh. You can highlight 
+			individual lines by clicking its line number, and even multiple lines by 
+			ctrl or shift clicking. Double-clicking the code container will 
+			(if supported by the browser) select all code for easy copying.</p>
+			
+			<pre class="vangogh"><code class="language-javascript">// Van Gogh; express your code in color
+var setArray = function(elems) {
+    this.length = 0; // This is a comment
+    push.apply(this, elems);
+    return this;
+}
 
-    <h2>Authors</h2>
-<p>Marcus Ekwall (marcus.ekwall@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Marcus Ekwall (marcus.ekwall@gmail.com)<br/>      </p>
+var aString = "Hello world!";</code></pre>
+		</div>
+		
+		<h3><a href="#">Without gutter</a></h3>
+		<div>
+			<pre class="vangogh-nogutter"><code class="javascript">// Van Gogh; express your code in color
+var setArray = function(elems) {
+    this.length = 0; // This is a comment
+    push.apply(this, elems);
+    return this;
+}
 
+var foo = "Hello world!";</code></pre>
+		</div>
+	</div>
+
+    <h2>Author and contact</h2>
+	<p>Marcus Ekwall (marcus@writeless.se)</p>
 
     <h2>Download</h2>
     <p>
