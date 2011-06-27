@@ -14,9 +14,12 @@ extended and modified for vanGogh by Marcus Ekwall <marcus@writeless.se>
     background-color: #ececec;
     border-right: 1px solid #ddd;
     text-align: right;
-    color: #aaa;
     padding: 1em .5em;
     margin-right: .5em;
+}
+
+.vg-gutter a {
+    color: #aaa;
 }
 
 .vg-code *::-moz-selection,
