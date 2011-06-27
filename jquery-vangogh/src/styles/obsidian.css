@@ -11,12 +11,15 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 }
 
 .vg-gutter {
-	color: #81969A;
     background-color: #3F4B4E;
     border-right: 1px solid #445257;
     text-align: right;
     padding: 1em .5em;
     margin-right: .5em;
+}
+
+.vg-gutter a {
+    color: #81969A;
 }
 
 .vg-code *::-moz-selection,
