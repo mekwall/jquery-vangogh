@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset='utf-8'>
+  <meta charset="utf-8">
+  <meta http-equiv="default-style" content="github">
 
   <title>vanGogh :: express your code in color</title>
   
@@ -33,12 +34,11 @@
     a { color: #000000; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
     .ui-widget { font-size: 1em; }
     p { margin-top: 0; -webkit-margin-before: 0; }
-    .vangogh { margin: 0; padding: 0; }
+    .vangogh, .vangogh-nogutter { margin: 0; padding: 0; }
   </style>
   
   <script>
@@ -58,16 +58,14 @@
 				title: this,
 				rel: "alternate stylesheet",
 				href: "jquery-vangogh/src/styles/"+this+".css",
-                type: "text/css",
-				disabled: true
+                type: "text/css"
 			})
 			.appendTo("head");
 		$("<option>"+this+"</option>").appendTo(styleSelector);
 	});
-	styleSelector.change();
+	styleSelector.trigger("change");
 	
-	$(".accordion").accordion();
-	
+	$("#examples").accordion({ autoHeight: false });
 	
 	$(".vangogh").vanGogh();
 	$(".vangogh-nogutter").vanGogh({ numbers: false });
@@ -97,7 +95,7 @@
 	<div id="styles"><label>Styles:</label> <select></select></div>
 	<h2>Examples</h2>
 	
-	<div class="accordion">
+	<div id="examples">
 	
 		<h3><a href="#">Default configuration</a></h3>
 		<div>
