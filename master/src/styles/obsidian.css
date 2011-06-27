@@ -1,7 +1,7 @@
 /*
 obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 */
- 
+
 .vg-container {
     font-family: 'Consolas', 'Courier New', Monospace;
     font-size: 12px;
@@ -24,7 +24,10 @@ obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
 
 .vg-code *::-moz-selection,
 .vg-code *::-webkit-selection,
-.vg-code *::selection,
+.vg-code *::selection {
+    background: #404E51;
+}
+
 .vg-line.vg-highlight {
     background: #404E51;
 }
