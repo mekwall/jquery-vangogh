@@ -3,14 +3,15 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>vanGogh syntax highlighter</title>
+  <title>vanGogh :: express your code in color</title>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
   <script src="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.js"></script>
   
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/flick/jquery-ui.css" />
-  <link rel="stylesheet" href="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.css" />
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/flick/jquery-ui.css">
+  <link rel="stylesheet" href="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Special+Elite&v1">
 
   <style type="text/css">
     body {
@@ -24,17 +25,19 @@
       width: 700px;
     }
 	#styles { float: right; }
-    h1 { font-size: 3.5em; color: #000000; margin-bottom: 3px; }
+    h1 { font-size: 3.5em; color: #000000; margin-bottom: 3px; font-family: "Special Elite" }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #000000; }
-    h3 { text-align: center; color: #000000; }
+    h2.sub { margin-top: 0; font-size: 1.2em; font-family: "Special Elite"; color: #999; }
     a { color: #000000; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
     pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
+    .ui-widget { font-size: 1em; }
+    p { margin-top: 0; -webkit-margin-before: 0; }
   </style>
   
   <script>
@@ -53,7 +56,8 @@
 			.attr({
 				title: this,
 				rel: "alternate stylesheet",
-				href: "https://raw.github.com/mekwall/jquery-vangogh/master/src/styles/"+this+".css",
+				href: "jquery-vangogh/src/styles/"+this+".css",
+                type: "text/css",
 				disabled: true
 			})
 			.appendTo("head");
@@ -82,12 +86,11 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/mekwall/jquery-vangogh">vanGogh</a>
-      <span class="small">by <a href="http://github.com/mekwall">mekwall</a></span></h1>
-	<h2>express your code in colors</h2>
+    <h1><a href="http://github.com/mekwall/jquery-vangogh">vanGogh</a></h1>
+    <h2 class="sub">:: express your code in color</h2>
 
     <div class="description">
-      jQuery syntax highlighter powered by highlight.js
+        A <a href="http://www.jquery.com/">jQuery</a> syntax highlighter plugin powered by <a href="https://github.com/isagalaev/highlight.js">highlight.js</a>
     </div>
 	
 	<div id="styles"><label>Styles:</label> <select></select></div>
@@ -95,11 +98,11 @@
 	
 	<div class="accordion">
 	
-		<h3><a href="#">Default</a></h3>
+		<h3><a href="#">Default configuration</a></h3>
 		<div>
 			<p>This is the default look and behavior of vanGogh. You can highlight 
 			individual lines by clicking its line number, and even multiple lines by 
-			ctrl or shift clicking. Double-clicking the code container will 
+			ctrl or shift clicking. Double-clicking the container will 
 			(if supported by the browser) select all code for easy copying.</p>
 			
 			<pre class="vangogh"><code class="language-javascript">// Van Gogh; express your code in color
@@ -123,6 +126,17 @@ var setArray = function(elems) {
 
 var foo = "Hello world!";</code></pre>
 		</div>
+        
+        <h3><a href="#">Inline highlighting</a></h3>
+        <div>
+            <p>You can easily highlight inline code as well, like this: 
+            <code class="vangogh javascript">var foo = "Hello world!";</code></p>
+        </div>
+        
+        <h3><a href="#">Horizontal scrolling</a></h3>
+        <div>
+            <pre class="vangogh-nogutter" style="width: 200px;"><code class="language-javascript">var foo = "This is a very long line that will allow you to horizontally scroll the container";</code></pre>
+        </div>
 	</div>
 
     <h2>Author and contact</h2>
@@ -136,7 +150,7 @@ var foo = "Hello world!";</code></pre>
     </p>
     <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
       by running:
-      <pre>$ git clone git://github.com/mekwall/jquery-vangogh</pre>
+      <pre class="vangogh-nogutter"><code>$ git clone git://github.com/mekwall/jquery-vangogh</code></pre>
     </p>
 
     <div class="footer">
