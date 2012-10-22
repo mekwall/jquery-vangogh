@@ -1,21 +1,26 @@
-#vanGogh - express your code in color#
+# vanGogh
+### express your code in color
 Why not let the legendary artist color your code? vanGogh is a small jQuery plugin that provides (client-side) syntax highlighting powered by the awesome [highlight.js](https://github.com/isagalaev/highlight.js) library.
 
-##Usage##
+## Basic usage
 
-Documentation is under way. Until then, take a look at the test case below. It's really not that hard to use!
+	$("pre").vanGogh();
 
-###Test case###
+## Documentation
 
-See [test case on jsFiddle](http://jsfiddle.net/mekwall/pMZge/show/) to see vanGogh in action!
+Visit [vanGogh's GitHub Page](http://mekwall.github.com/jquery-vangogh/) for more information.
 
-##Limitations##
+## Test case
 
-The highlight.js styles are not supported. vanGogh have many more elements that need styling so you will have
+Check out [test case on jsFiddle](http://jsfiddle.net/mekwall/pMZge/)
+
+## Limitations
+
+The [highlight.js](https://github.com/isagalaev/highlight.js) styles are not supported. vanGogh have many more elements that need styling so you will have
 to use vanGogh-specific styles.
 
-##Licensing##
-All code is open source and dual licensed under GPL and MIT. Check the individual licenses for more information.
+## Licensing
+All code is open source and dual licensed under [GPL](https://raw.github.com/mekwall/jquery-vangogh/master/GPL-LICENSE.txt) and [MIT](https://raw.github.com/mekwall/jquery-vangogh/master/MIT-LICENSE.txt).
 
 ##Credits##
-Big creds to [isagalaev](https://github.com/isagalaev) and contributors for the creation of [highlight.js](https://github.com/isagalaev/highlight.js); the heart and soul of this plugin.
+Big creds to [isagalaev](https://github.com/isagalaev) and [contributors](https://raw.github.com/isagalaev/highlight.js/master/AUTHORS.en.txt) for the creation of [highlight.js](https://github.com/isagalaev/highlight.js); the heart and soul of this plugin.
