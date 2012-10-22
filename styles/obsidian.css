@@ -1,0 +1,193 @@
+/*
+obsidian style for vanGogh by Marcus Ekwall <marcus@writeless.se>
+*/
+
+.vg-container {
+    font-family: 'Consolas', 'Courier New', Monospace;
+    font-size: 12px;
+    border: 1px solid #445257;
+	color: #e0e2e4;
+	background-color: #293134;
+}
+
+.vg-gutter {
+    background-color: #3F4B4E;
+    border-right: 1px solid #445257;
+    text-align: right;
+    padding: 1em .5em;
+    margin-right: .5em;
+}
+
+.vg-gutter a {
+    color: #81969A;
+}
+
+.vg-code *::-moz-selection,
+.vg-code *::-webkit-selection,
+.vg-code *::selection {
+    background: #404E51;
+}
+
+.vg-line.vg-highlight {
+    background: #404E51;
+}
+ 
+.vg-line span.vg-highlight {
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+ 
+.vg-container .vg-code {
+    display: block;
+    padding: 1em .5em;
+}
+ 
+.vg-code {
+    border: 0;
+    padding: .4em;
+}
+ 
+.vg-code .comment,
+.vg-code .template_comment,
+.vg-code .diff .header,
+.vg-code .javadoc {
+    color: #818E96;
+}
+ 
+.vg-code .keyword,
+.vg-code .css .rule .keyword,
+.vg-code .winutils,
+.vg-code .javascript .title,
+.vg-code .lisp .title,
+.vg-code .subst,
+.vg-code .literal,
+.vg-code .class {
+    color: #93C763;
+    font-weight: bold;
+}
+ 
+.vg-code .number,
+.vg-code .hexcolor {
+    color: #FFCD22;
+}
+ 
+.vg-code .string,
+.vg-code .tag .value,
+.vg-code .phpdoc,
+.vg-code .tex .formula {
+    color: #EC7600;
+}
+
+.vg-code .title,
+.vg-code .id {
+    color: #678CB1;
+    font-weight: bold;
+}
+
+.vg-code .javascript .title,
+.vg-code .lisp .title,
+.vg-code .subst {
+    font-weight: normal;
+}
+
+.vg-code .javascript .title {
+	color: #e0e2e4;
+}
+
+.vg-code .class .title,
+.vg-code .haskell .label,
+.vg-code .tex .command {
+    color: #A082BD;
+    font-weight: bold;
+}
+ 
+.vg-code .tag,
+.vg-code .tag .title,
+.vg-code .rules .property,
+.vg-code .django .tag .keyword {
+    color: #8CBBAD;
+    font-weight: bold;
+}
+
+.vg-code .attribute {
+	color: #B3B689;
+}
+
+.vg-code .entity {
+	color: #BBBBBB;
+}
+ 
+.vg-code .variable,
+.vg-code .instancevar,
+.vg-code .lisp .body {
+    color: #678CB1;
+}
+ 
+.vg-code .regexp {
+    color: #D39745;
+}
+ 
+.vg-code .symbol,
+.vg-code .ruby .symbol .string,
+.vg-code .ruby .symbol .keyword,
+.vg-code .ruby .symbol .keymethods,
+.vg-code .lisp .keyword,
+.vg-code .tex .special,
+.vg-code .input_number {
+    color: #E8E2B7;
+}
+ 
+.vg-code .builtin,
+.vg-code .built_in,
+.vg-code .lisp .title {
+    color: #0086b3
+}
+
+.vg-code .preprocessor {
+	color: #D955C1;
+}
+
+.vg-code .codeprocessor,
+.vg-code .pi,
+.vg-code .doctype,
+.vg-code .shebang {
+    color: #ABBFD3;
+    font-weight: bold;
+}
+
+.vg-code .cdata {
+	color: #D5E6F0;
+}
+ 
+.vg-code .deletion {
+    background: #fdd
+}
+ 
+.vg-code .addition {
+    background: #dfd
+}
+ 
+.vg-code .diff .change {
+    background: #0086b3
+}
+ 
+.vg-code .chunk {
+    color: #aaa
+}
+ 
+.vg-code .tex .formula {
+    opacity: 0.5;
+}
+
+.vg-code .css .class {
+	color: #93C763;
+}
+
+.vg-code .css .tag {
+	color: #D0D2B5;
+}
+
+.vg-code .css .attribute {
+	color: #678CB1;
+}

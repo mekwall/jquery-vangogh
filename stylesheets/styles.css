@@ -1,14 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@import url(http://fonts.googleapis.com/css?family=Satisfy);
 
 body {
   padding:50px;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
-  font-weight:300;
+  font-weight: 300;
+}
+
+header h1 {
+  font-family: "Satisfy", cursive;
+  font-size: 32px;
+  margin-left: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color:#222;
+  color:#333;
   margin:0 0 20px;
 }
 
@@ -46,8 +53,8 @@ a small {
 }
 
 .wrapper {
-  width:860px;
-  margin:0 auto;
+  width: auto;
+  margin: 0;
 }
 
 blockquote {
@@ -55,20 +62,6 @@ blockquote {
   margin:0;
   padding:0 0 0 20px;
   font-style:italic;
-}
-
-code, pre {
-  font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
-  color:#333;
-  font-size:12px;
-}
-
-pre {
-  padding:8px 15px;
-  background: #f8f8f8;  
-  border-radius:5px;
-  border:1px solid #e5e5e5;
-  overflow-x: auto;
 }
 
 table {
@@ -160,8 +153,7 @@ header ul a strong {
 }
 
 section {
-  width:500px;
-  float:right;
+  margin-left: 320px;
   padding-bottom:50px;
 }
 
@@ -252,4 +244,55 @@ footer {
     font-size:12pt;
     color:#444;
   }
+}
+
+#examples {
+  margin-bottom: 20px;
+}
+
+.ui-accordion-header {
+  font-weight: bold;
+}
+
+.ui-accordion-header.ui-state-default.ui-state-hover a {
+  color: #fff;
+}
+
+.ui-accordion-header.ui-state-active.ui-state-hover a {
+  color: #ff0084;
+}
+
+/* here thy artist beginst hast work */
+.vg-container {
+    position: relative;
+    overflow: auto;
+}
+ 
+.vg-container,
+.vg-code {
+    border: 0;
+    margin: 0;
+}
+ 
+.vg-code .vg-line,
+.vg-gutter .vg-number {
+    display: block;
+    height: 1.5em;
+    line-height: 1.5em !important;
+}
+ 
+.vg-gutter {
+    float: left;
+    min-width: 20px;
+    width: auto;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+ 
+.vg-number {
+    cursor: pointer;
 }

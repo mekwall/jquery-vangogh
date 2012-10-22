@@ -1,63 +1,163 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>vanGogh by mekwall</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta http-equiv="default-style" content="github">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>vanGogh</h1>
-        <p>A jQuery syntax highlighter plugin powered by highlight.js</p>
 
-        <p class="view"><a href="https://github.com/mekwall/jquery-vangogh">View the Project on GitHub <small>mekwall/jquery-vangogh</small></a></p>
+    <link rel="stylesheet" href="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href="./stylesheets/styles.css">
 
+    <title>jQuery vanGogh examples</title>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>jQuery vanGogh</h1>
+
+        <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Van_Gogh_Self-Portrait_with_Straw_Hat_1887-Metropolitan.jpg/220px-Van_Gogh_Self-Portrait_with_Straw_Hat_1887-Metropolitan.jpg" alt="" />
+
+        <p>A jQuery syntax highlighter plugin powered by <a href="https://github.com/isagalaev/highlight.js">highlight.js</a></p>
+
+        <p class="view">
+            <a href="https://github.com/mekwall/jquery-vangogh">View the Project on GitHub <small>mekwall/jquery-vangogh</small></a>
+        </p>
 
         <ul>
           <li><a href="https://github.com/mekwall/jquery-vangogh/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/mekwall/jquery-vangogh/tarball/master">Download <strong>TAR Ball</strong></a></li>
           <li><a href="https://github.com/mekwall/jquery-vangogh">View On <strong>GitHub</strong></a></li>
         </ul>
-      </header>
-      <section>
+
+        <label id="styles">Select style: <select></select></label>
+    </header>
+
+    <section>
         <h1>Express your code in color</h1>
 
-<p>Why not let the legendary painter color your code? vanGogh is a small jQuery plugin that provides (client-side) syntax highlighting powered by the awesome <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> library.</p>
+        <p>Why not let the legendary painter color your code? vanGogh is a small jQuery plugin that provides (client-side) syntax highlighting powered by the awesome <a href="https://github.com/isagalaev/highlight.js">highlight.js</a> library.</p>
 
-<h2>Examples</h2>
+        <h2>Examples</h2>
 
-<p>...</p>
+        <div id="examples">
+            <h3><a href="#">Default configuration</a></h3>
+            <div>
+                <p>This is the default look and behavior of vanGogh. You can highlight 
+                individual lines by clicking its line number, and even multiple lines by 
+                ctrl or shift clicking. Double-clicking the container will 
+                (if supported by the browser) select all code for easy copying.</p>
 
-<h3>Test case</h3>
+                <h4>Usage</h4>
+                <p><code class="vangogh javascript">$("pre").vanGogh();</code></p>
+                
+                <h4>Result</h4>
+                <pre class="vangogh"><code class="language-javascript">// Van Gogh; express your code in color
+var setArray = function(elems) {
+this.length = 0; // This is a comment
+push.apply(this, elems);
+return this;
+}
 
-<p>See <a href="http://jsfiddle.net/mekwall/pMZge/show/">test case on jsFiddle</a> to see vanGogh in action!</p>
+var aString = "Hello world!";</code></pre>
+            </div>
 
-<h2>Limitations</h2>
+            <h3><a href="#">Without gutter</a></h3>
+            <div>
+                <p>If you don't want the gutter to show, just tell vanGogh to disable the numbers.</p>
+                <h4>Usage</h4>
+                <p><code class="vangogh javascript">$("pre").vanGogh({ numbers: false });</code></p>
+                
+                <h4>Result</h4>
+                <pre class="vangogh-nogutter"><code class="javascript">// Van Gogh; express your code in color
+var setArray = function(elems) {
+this.length = 0; // This is a comment
+push.apply(this, elems);
+return this;
+}
 
-<p>The highlight.js styles are not supported. vanGogh have additional elements that need styling so you will have to use vanGogh-specific styles.</p>
+var foo = "Hello world!";</code></pre>
+            </div>
 
-<h2>Licensing</h2>
+            <h3><a href="#">Inline highlighting</a></h3>
+            <div>
+                <p>vanGogh works out of the box for inline highlighting by skipping the <code class="vangogh html">pre</code> element.</p>
+                <h4>Usage</h4>
+                <p><code class="vangogh javascript">$("code").vanGogh();</code></p>
 
-<p>All code is open source and dual licensed under <a href="https://github.com/mekwall/jquery-vangogh/GPL-LICENSE.txt">GPL</a> and <a href="https://github.com/mekwall/jquery-vangogh/MIT-LICENSE.txt">MIT</a>.</p>
+                <h4>Result</h4>
+                <p><code class="vangogh javascript">var foo = "Hello world!";</code></p>
+            </div>
 
-<h2>Credits</h2>
+            <h3><a href="#">Horizontal scrolling</a></h3>
+            <div>
+                <p>Just set a width of your <code class="vangogh html">pre</code> container to enable horizontal scrolling.</p>
+                
+                <h4>Result</h4>
+                <pre class="vangogh-nogutter" style="width: 200px;"><code class="language-javascript">var foo = "This is a very long line that will allow you to horizontally scroll the container";</code></pre>
+            </div>
 
-<p>Big creds to <a href="https://github.com/isagalaev">isagalaev</a> and contributors for the creation of <a href="https://github.com/isagalaev/highlight.js">highlight.js</a>; the heart and soul of this plugin.</p>
+        </div>
+
+        <h2>Test case</h2>
+
+        <p>See <a href="http://jsfiddle.net/mekwall/pMZge/">test case on jsFiddle</a> to see vanGogh in action!</p>
+
+        <h2>Limitations</h2>
+
+        <p>The highlight.js styles are not supported. vanGogh have additional elements that need styling so you will have to use vanGogh-specific styles.</p>
+
+        <h2>Licensing</h2>
+
+        <p>All code is open source and dual licensed under <a href="https://github.com/mekwall/jquery-vangogh/GPL-LICENSE.txt">GPL</a> and <a href="https://github.com/mekwall/jquery-vangogh/MIT-LICENSE.txt">MIT</a>.</p>
+
+        <h2>Credits</h2>
+
+        <p>Big creds to <a href="https://github.com/isagalaev">isagalaev</a> and <a href="https://raw.github.com/isagalaev/highlight.js/master/AUTHORS.en.txt">contributors</a> for the creation of <a href="https://github.com/isagalaev/highlight.js">highlight.js</a>; the heart and soul of this plugin.</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mekwall">mekwall</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
+        <footer>
+            <p>This project is maintained by <a href="https://github.com/mekwall">mekwall</a></p>
+            <p><small>Hosted on GitHub Pages — Theme by <a href="https://github.com/orderedlist">orderedlist</a>, modified by <a href="https://github.com/mekwall">mekwall</a></small></p>
+        </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script src="https://raw.github.com/mekwall/jquery-vangogh/master/src/lib/highlight.pack.js"></script>
+    <script src="https://raw.github.com/mekwall/jquery-vangogh/master/src/jquery.vangogh.js"></script>
+
+    <script>
+        $(function(){
+            var styles = [ "github", "obsidian" ];
+            var styleSelector = $("#styles select").change(function(){
+                var style = $(this).val();
+                $("link[rel='alternate stylesheet']")
+                    .prop("disabled", true)
+                    .filter("[title='"+style+"']")
+                        .prop("disabled", false);
+            });
+                
+            $.each(styles, function () {
+                $('<link rel="alternate stylesheet" type="text/css" title="'+this+'" href="./styles/'+this+'.css" disabled></link>')
+                    .insertAfter("head > link:last");
+                $("<option>"+this+"</option>").appendTo(styleSelector);
+            });
+
+            styleSelector.trigger("change");
+
+            $("#examples").accordion({
+                heightStyle: "content"
+            });
+
+            $(".vangogh").vanGogh();
+            $(".vangogh-nogutter").vanGogh({ numbers: false });
+        });
+    </script>
+</body>
 </html>
